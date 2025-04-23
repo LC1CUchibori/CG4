@@ -2,6 +2,8 @@
 #include "Particle.h"
 #pragma once
 
+
+
 class GameScene
 {
 public:
@@ -28,5 +30,7 @@ private:
 
 	// パーティクル
 	Particle* particle_ = nullptr;
+
+	std::list<Particle*> particles_;
 };
 
