@@ -3,15 +3,20 @@
 using namespace KamataEngine;
 using namespace MathUtility;
 
-void Particle::Initialize(Model*model,Vector3 position)
+void Particle::Initialize(Model*model,Vector3 position,Vector3 velocity)
 {
 	assert(model);
 
 	model_ = model;
 
+	velocity_ = velocity;
+
 	// 色の設定
 	objectColor_.Initialize();
 	color_ = { 1,1,0,1 };
+
+	// 大きさ
+	worldTransform_.scale_ = { 0.2f,0.2f,0.2f };
 
 	worldTransform_.translation_ = position;
 
@@ -24,7 +29,7 @@ void Particle::Update()
 	objectColor_.SetColor(color_);
 
 	// 移動
-	worldTransform_.translation_ += {0.0f, 0.1f, 0.0f};
+	worldTransform_.translation_ += velocity_;
 
 	// 行列の更新
 	worldTransform_.UpdateMatrix();
