@@ -21,6 +21,10 @@ public:
 
 	// 描画
 	void Draw();
+
+	// パーティクル発生
+	void ParticleBorn(KamataEngine::Vector3 position);
+
 private:
 	// パーティクル3Dモデルデータ
 	KamataEngine::Model* modelParticle_ = nullptr;
