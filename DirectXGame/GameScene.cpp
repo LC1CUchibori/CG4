@@ -84,6 +84,8 @@ void GameScene::ParticleBorn(Vector3 position)
 	for (int i = 0; i < 150; i++) {
 		// 生成
 		Particle* particle = new Particle();
+		// 位置
+		//Vector3 position = { 0.0f,0.0f,0.0f };
 		// 移動量
 		Vector3 velocity = { distribution(randomEngine),distribution(randomEngine),0 };
 
