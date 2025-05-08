@@ -9,17 +9,21 @@ void Effect::Initialize(Model* model,Vector3 scale, Vector3 rotation)
 
 	model_ = model;
 
-	scale_ = scale;
+	worldTransform_.scale_ = scale;
+	worldTransform_.rotation_ = rotation;
+	worldTransform_.translation_ = {0, 0, 0};
 
-	rotation_ = rotation;
+	/*objectColor_.Initialize();
+	color_ = { 0,0,0,0 };*/
 
-	worldTransform_.rotation_.z +=180.0f; 
 
 	worldTransform_.Initialize();
 }
 
 void Effect::Update()
 {
+	//objectColor_.SetColor(color_);
+
 	worldTransform_.UpdateMatrix();
 }
 
