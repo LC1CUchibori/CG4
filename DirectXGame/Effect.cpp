@@ -18,7 +18,7 @@ void Effect::Update()
 	worldTransform_.TransferMatrix();
 }
 
-void Effect::Draw(Camera& camera)
+void Effect::Draw(Camera* camera)
 {
-	model_->Draw(worldTransform_, camera);
+	model_->Draw(worldTransform_, *camera);
 }
