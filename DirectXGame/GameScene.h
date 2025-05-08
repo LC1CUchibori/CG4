@@ -22,6 +22,10 @@ private:
 	// エフェクト
 	Effect* effect_ = nullptr;
 
+	// カメラ
+	KamataEngine::Camera camera_;
+
+	// エフェクトモデル描画
 	KamataEngine::Model* effectModel_ = nullptr;
 };
 

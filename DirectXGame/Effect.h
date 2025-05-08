@@ -11,7 +11,7 @@ public:
 
 	void Update();
 
-	void Draw();
+	void Draw(KamataEngine::Camera& camera);
 private:
 	// ワールド変換データ
 	KamataEngine::WorldTransform worldTransform_;
