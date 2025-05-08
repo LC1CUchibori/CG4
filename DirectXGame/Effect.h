@@ -7,6 +7,7 @@
 class Effect
 {
 public:
+
 	void Initialize(KamataEngine::Model* model);
 
 	void Update();

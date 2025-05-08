@@ -5,6 +5,10 @@
 class GameScene
 {
 public:
+	GameScene();
+
+	~GameScene();
+
 	// 初期化
 	void Initialize();
 
@@ -17,5 +21,7 @@ public:
 private:
 	// エフェクト
 	Effect* effect_ = nullptr;
+
+	KamataEngine::Model* effectModel_ = nullptr;
 };
 
