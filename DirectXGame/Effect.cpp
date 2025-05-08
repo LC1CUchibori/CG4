@@ -9,6 +9,8 @@ void Effect::Initialize(Model* model)
 
 	model_ = model;
 
+	worldTransform_.rotation_.z =-45.0f; 
+
 	worldTransform_.Initialize();
 }
 

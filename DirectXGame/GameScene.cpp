@@ -32,5 +32,15 @@ void GameScene::Update()
 
 void GameScene::Draw()
 {
-	effect_->Draw();
+	// DirectXCommon インスタンスの取得
+	DirectXCommon* dxCommn = DirectXCommon::GetInstance();
+
+	// 3Dモデル描画前処理
+	Model::PreDraw(dxCommn->GetCommandList());
+
+	// パーティクルの描画
+	effect_->Draw(&camera_);
+
+	// 3Dモデル描画後処理
+	Model::PostDraw();
 }
