@@ -2,7 +2,6 @@
 
 #include <KamataEngine.h>
 
-
 // エフェクト
 class Effect
 {
