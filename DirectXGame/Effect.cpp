@@ -2,7 +2,7 @@
 
 using namespace KamataEngine;
 
-void Effect::Initialize(Model* model)
+void Effect::Initialize(Model* model,Vector3 postion,Vector3 velocity)
 {
 	// NULLポインタチェック
 	assert(model);

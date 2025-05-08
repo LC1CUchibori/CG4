@@ -7,7 +7,7 @@ class Effect
 {
 public:
 
-	void Initialize(KamataEngine::Model* model);
+	void Initialize(KamataEngine::Model* model,KamataEngine::Vector3 postion,KamataEngine::Vector3 velocity);
 
 	void Update();
 
