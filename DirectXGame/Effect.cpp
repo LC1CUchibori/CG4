@@ -2,22 +2,25 @@
 
 using namespace KamataEngine;
 
-void Effect::Initialize(Model* model,Vector3 postion,Vector3 velocity)
+void Effect::Initialize(Model* model,Vector3 scale, Vector3 rotation)
 {
 	// NULLポインタチェック
 	assert(model);
 
 	model_ = model;
 
-	worldTransform_.rotation_.z =-45.0f; 
+	scale_ = scale;
+
+	rotation_ = rotation;
+
+	worldTransform_.rotation_.z +=180.0f; 
 
 	worldTransform_.Initialize();
 }
 
 void Effect::Update()
 {
-	// 行列を定数バッファに転送
-	worldTransform_.TransferMatrix();
+	worldTransform_.UpdateMatrix();
 }
 
 void Effect::Draw(Camera* camera)

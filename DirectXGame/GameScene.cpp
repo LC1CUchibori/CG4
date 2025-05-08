@@ -22,10 +22,15 @@ void GameScene::Initialize()
 {
 	effectModel_ = Model::Create();
 
+	KamataEngine::Vector3 scale = { distribution(randomEngine),distribution(randomEngine),0 };
+
+	KamataEngine::Vector3 rotation = { distribution(randomEngine),distribution(randomEngine),0 };
+
 	// エフェクトの生成
 	effect_ = new Effect();
 	// パーティクルの初期化
-	effect_->Initialize(effectModel_);
+	effect_->Initialize(effectModel_,scale,rotation);
+
 
 	 // カメラの初期化
 	camera_.Initialize();
