@@ -1,7 +1,11 @@
 #include "Effect.h"
 
-void Effect::Initialize()
+using namespace KamataEngine;
+
+void Effect::Initialize(Model* model)
 {
+	// NULLポインタチェック
+	assert(model);
 }
 
 void Effect::Update()

@@ -7,12 +7,15 @@
 class Effect
 {
 public:
-	void Initialize();
+	void Initialize(KamataEngine::Model* model);
 
 	void Update();
 
 	void Draw();
 private:
-	WorldTransform
+	// ワールド変換データ
+	KamataEngine::WorldTransform worldTransform_;
+	// モデル
+	KamataEngine::Model* model_ = nullptr;
 };
 

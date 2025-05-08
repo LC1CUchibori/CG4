@@ -1,5 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
+#include "Effect.h"
+
 class GameScene
 {
 public:
@@ -11,5 +13,9 @@ public:
 
 	// 描画
 	void Draw();
+
+private:
+	// エフェクト
+	Effect* effect_ = nullptr;
 };
 
