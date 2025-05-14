@@ -8,7 +8,7 @@ std::random_device seedGenerator;
 std::mt19937 randomEngine(seedGenerator());
 
 
-std::uniform_real_distribution<float> scaleDistribution(1.0f, 3.0f);
+std::uniform_real_distribution<float> scaleDistribution(0.2f, 0.5f);
 std::uniform_real_distribution<float> rotationDistribution(-3.14159265f, 3.14159265f);
 
 GameScene::GameScene() {}
