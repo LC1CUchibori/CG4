@@ -14,8 +14,9 @@ public:
 	void Draw(KamataEngine::Camera* camera);
 
 	bool IsFinished() {
-
+		return IsFinished_;
 	}
+
 private:
 	// ワールド変換データ
 	KamataEngine::WorldTransform worldTransform_;
