@@ -47,6 +47,13 @@ void GameScene::Update()
 	for (Effect* effect : effects_) {
 		effect->Update();
 	}
+
+	effects_.remove_if([](Effect* effect) {
+		if (effect->IsFinished()) {
+			return true;
+		}
+		return false;
+		});
 }
 
 void GameScene::Draw()

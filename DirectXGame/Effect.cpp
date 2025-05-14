@@ -1,4 +1,5 @@
 #include "Effect.h"
+#include <algorithm>
 
 using namespace KamataEngine;
 
@@ -36,6 +37,8 @@ void Effect::Update()
 
 
 	objectColor_.SetColor(color_);
+
+	color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
 
 	worldTransform_.UpdateMatrix();
 }
