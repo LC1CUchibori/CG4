@@ -8,7 +8,7 @@ std::random_device seedGenerator;
 std::mt19937 randomEngine(seedGenerator());
 
 
-std::uniform_real_distribution<float> scaleDistribution(0.2f, 0.5f);
+std::uniform_real_distribution<float> scaleDistribution(0.2f, 0.3f);
 std::uniform_real_distribution<float> rotationDistribution(-3.14159265f, 3.14159265f);
 
 GameScene::GameScene() {}
@@ -23,7 +23,7 @@ void GameScene::Initialize()
 {
 	effectModel_ = Model::Create();
 
-	KamataEngine::Vector3 scale = { 1.0f, scaleDistribution(randomEngine), 1.0f };
+	KamataEngine::Vector3 scale = { 3.0f, scaleDistribution(randomEngine), 3.0f };
 
 	KamataEngine::Vector3 rotation = { 0.0f, 0.0f, rotationDistribution(randomEngine) };
 

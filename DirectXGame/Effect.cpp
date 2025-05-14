@@ -9,8 +9,8 @@ void Effect::Initialize(Model* model,Vector3 scale, Vector3 rotation)
 
 	model_ = model;
 
-	worldTransform_.scale_ = { scale.x * 1.0f, scale.y * 0.5f, scale.z };  // Y方向を潰す
-	worldTransform_.rotation_ = { rotation.x, rotation.y, rotation.z + static_cast<float>(3.14159265f) / 4.0f };  // Z軸に45度回転追加
+	worldTransform_.scale_ = scale;
+	worldTransform_.rotation_ = rotation;
 	worldTransform_.translation_ = { 0, 0, 0 };
 
 	objectColor_.Initialize();
