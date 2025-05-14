@@ -20,7 +20,7 @@ public:
 
 private:
 	// エフェクト
-	Effect* effect_ = nullptr;
+	std::list<Effect*>effects_;
 
 	// カメラ
 	KamataEngine::Camera camera_;
