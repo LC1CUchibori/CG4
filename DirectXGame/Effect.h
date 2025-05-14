@@ -12,6 +12,10 @@ public:
 	void Update();
 
 	void Draw(KamataEngine::Camera* camera);
+
+	bool IsFinished() {
+
+	}
 private:
 	// ワールド変換データ
 	KamataEngine::WorldTransform worldTransform_;
@@ -27,5 +31,12 @@ private:
 	KamataEngine::Vector3 scale_;
 	// 回転
 	KamataEngine::Vector3 rotation_;
+
+	// 終了フラグ
+	bool IsFinished_ = false;
+	// 経過時間カウント
+	float counter_ = 0.0f;
+	// 存続時間(消滅までの時間)<秒>
+	const float kDuration = 1.0f;
 };
 

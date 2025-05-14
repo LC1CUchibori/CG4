@@ -22,6 +22,19 @@ void Effect::Initialize(Model* model,Vector3 scale, Vector3 rotation,Vector3 pos
 
 void Effect::Update()
 {
+	//	終了ならなにもしない
+	if (IsFinished_) {
+		return;
+	}
+
+	// カウンターを1フレーム分の秒数を縮める
+	if (counter_ >= kDuration) {
+		counter_ = kDuration;
+		// 終了扱いになる
+		IsFinished_ = true;
+	}
+
+
 	objectColor_.SetColor(color_);
 
 	worldTransform_.UpdateMatrix();
