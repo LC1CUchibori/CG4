@@ -13,8 +13,8 @@ void Effect::Initialize(Model* model,Vector3 scale, Vector3 rotation)
 	worldTransform_.rotation_ = rotation;
 	worldTransform_.translation_ = {0, 0, 0};
 
-	/*objectColor_.Initialize();
-	color_ = { 0,0,0,0 };*/
+	objectColor_.Initialize();
+	color_ = { 0,0,0,0 };
 
 
 	worldTransform_.Initialize();
@@ -22,7 +22,7 @@ void Effect::Initialize(Model* model,Vector3 scale, Vector3 rotation)
 
 void Effect::Update()
 {
-	//objectColor_.SetColor(color_);
+	objectColor_.SetColor(color_);
 
 	worldTransform_.UpdateMatrix();
 }

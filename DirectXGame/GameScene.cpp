@@ -1,16 +1,17 @@
 #include "GameScene.h"
 #include <random>
+#include <cmath>  // M_PI を使いたい場合
 
 using namespace KamataEngine;
 
 std::random_device seedGenerator;
 std::mt19937 randomEngine(seedGenerator());
-std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
 
 
-GameScene::GameScene()
-{
-}
+std::uniform_real_distribution<float> scaleDistribution(1.0f, 3.0f);
+std::uniform_real_distribution<float> rotationDistribution(-3.14159265f, 3.14159265f);
+
+GameScene::GameScene() {}
 
 GameScene::~GameScene()
 {
@@ -22,17 +23,13 @@ void GameScene::Initialize()
 {
 	effectModel_ = Model::Create();
 
-	KamataEngine::Vector3 scale = { distribution(randomEngine),distribution(randomEngine),0 };
+	KamataEngine::Vector3 scale = { 1.0f, scaleDistribution(randomEngine), 1.0f };
 
-	KamataEngine::Vector3 rotation = { distribution(randomEngine),distribution(randomEngine),0 };
+	KamataEngine::Vector3 rotation = { 0.0f, 0.0f, rotationDistribution(randomEngine) };
 
-	// エフェクトの生成
 	effect_ = new Effect();
-	// パーティクルの初期化
-	effect_->Initialize(effectModel_,scale,rotation);
+	effect_->Initialize(effectModel_, scale, rotation);
 
-
-	 // カメラの初期化
 	camera_.Initialize();
 }
 
@@ -43,15 +40,11 @@ void GameScene::Update()
 
 void GameScene::Draw()
 {
-	// DirectXCommon インスタンスの取得
 	DirectXCommon* dxCommn = DirectXCommon::GetInstance();
 
-	// 3Dモデル描画前処理
 	Model::PreDraw(dxCommn->GetCommandList());
 
-	// パーティクルの描画
 	effect_->Draw(&camera_);
 
-	// 3Dモデル描画後処理
 	Model::PostDraw();
 }
