@@ -26,8 +26,10 @@ void GameScene::Initialize()
 
 	camera_.Initialize();
 
-	
-	EffectBorn();
+	Vector3 position = { distribution(randomEngine) * 30.0f,distribution(randomEngine) * 20.0f,0 };
+
+	// パーティクルの発生
+	EffectBorn(position);
 }
 
 void GameScene::Update()
