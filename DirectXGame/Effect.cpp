@@ -23,19 +23,6 @@ void Effect::Initialize(Model* model,Vector3 scale, Vector3 rotation,Vector3 pos
 
 void Effect::Update()
 {
-	//	終了ならなにもしない
-	if (IsFinished_) {
-		return;
-	}
-
-	// カウンターを1フレーム分の秒数を縮める
-	if (counter_ >= kDuration) {
-		counter_ = kDuration;
-		// 終了扱いになる
-		IsFinished_ = true;
-	}
-
-
 	objectColor_.SetColor(color_);
 
 	color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
@@ -43,7 +30,7 @@ void Effect::Update()
 	worldTransform_.UpdateMatrix();
 }
 
-void Effect::Draw(Camera* camera)
+void Effect::Draw(Camera* camera,ObjectColor* objectColor)
 {
-	model_->Draw(worldTransform_, *camera);
+	model_->Draw(worldTransform_, camera,&objectColor_);
 }

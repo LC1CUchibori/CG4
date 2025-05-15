@@ -25,6 +25,8 @@ private:
 	// カメラ
 	KamataEngine::Camera camera_;
 
+	KamataEngine::ObjectColor objectColor_;
+
 	// エフェクトモデル描画
 	KamataEngine::Model* effectModel_ = nullptr;
 };
