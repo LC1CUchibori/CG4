@@ -36,6 +36,7 @@ void GameScene::Update()
 	// 終了フラグの立ってエフェクトを削除
 	effects_.remove_if([](Effect* effect) {
 		if (effect->IsFinished()) {
+			delete effect;  // メモリ解放
 			return true;
 		}
 		return false;
