@@ -24,22 +24,10 @@ void GameScene::Initialize()
 {
 	effectModel_ = Model::Create();
 
-	// パーティクルの生成
-	for (int i = 0; i < 10; i++) {
-		// 生成
-		Effect* effect = new Effect();
-		// 位置
-		KamataEngine::Vector3 position = { 0.0f,0.0f,0.1f * i };
-		// 大きさ
-		KamataEngine::Vector3 scale = { 3.0f, scaleDistribution(randomEngine), 3.0f };
-		// 角度
-		KamataEngine::Vector3 rotation = { 0.0f, 0.0f, rotationDistribution(randomEngine) };
-		// 初期化
-		effect->Initialize(effectModel_, scale, rotation, position);
-		// リストに追加
-		effects_.push_back(effect);
-	}
 	camera_.Initialize();
+
+	
+	EffectBorn();
 }
 
 void GameScene::Update()
@@ -67,4 +55,21 @@ void GameScene::Draw()
 	}
 
 	Model::PostDraw();
+}
+
+void GameScene::EffectBorn(Vector3 position)
+{
+	// パーティクルの生成
+	for (int i = 0; i < 10; i++) {
+		// 生成
+		Effect* effect = new Effect();
+		// 大きさ
+		KamataEngine::Vector3 scale = { 3.0f, scaleDistribution(randomEngine), 3.0f };
+		// 角度
+		KamataEngine::Vector3 rotation = { 0.0f, 0.0f, rotationDistribution(randomEngine) };
+		// 初期化
+		effect->Initialize(effectModel_, scale, rotation, position);
+		// リストに追加
+		effects_.push_back(effect);
+	}
 }

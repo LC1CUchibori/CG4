@@ -18,6 +18,8 @@ public:
 	// 描画
 	void Draw();
 
+	void EffectBorn(Vector3 position);
+
 private:
 	// エフェクト
 	std::list<Effect*>effects_;
