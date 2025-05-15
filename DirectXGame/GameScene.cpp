@@ -63,7 +63,7 @@ void GameScene::Draw()
 	Model::PreDraw(dxCommn->GetCommandList());
 
 	for (Effect* effect : effects_) {
-		effect->Draw(&camera_,&objectColor_);
+		effect->Draw(&camera_);
 	}
 
 	Model::PostDraw();
