@@ -39,5 +39,12 @@ private:
 	float counter_ = 0.0f;
 	// 存続時間(消滅までの時間)<秒>
 	const float kDuration = 1.0f;
+
+
+	KamataEngine::Vector3 originalScale_;
+
+	float rotationSpeedY_ = 0.0f;
+
+	float originalPositionX_ = 0.0f;  // 元のX座標を保持
 };
 

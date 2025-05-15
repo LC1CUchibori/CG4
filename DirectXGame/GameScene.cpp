@@ -42,7 +42,7 @@ void GameScene::Update()
 		return false;
 		});
 
-	if (rand() % 20 == 0) {
+	if (rand() % 5 == 0) {
 		// 発生位置は乱数
 		Vector3 position = { distribution(randomEngine) * 30.0f,distribution(randomEngine) * 20.0f,0 };
 		// パーティクルの発生
@@ -70,7 +70,7 @@ void GameScene::Draw()
 void GameScene::EffectBorn(Vector3 position)
 {
 	// パーティクルの生成
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 20; i++) {
 		// 生成
 		Effect* effect = new Effect();
 		// 大きさ
