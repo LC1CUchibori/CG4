@@ -7,6 +7,7 @@ using namespace KamataEngine;
 std::random_device seedGenerator;
 std::mt19937 randomEngine(seedGenerator());
 
+std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
 std::uniform_real_distribution<float> scaleDistribution(0.2f, 0.3f);
 std::uniform_real_distribution<float> rotationDistribution(-3.14159265f, 3.14159265f);
 
@@ -26,24 +27,30 @@ void GameScene::Initialize()
 
 	camera_.Initialize();
 
-	Vector3 position = { distribution(randomEngine) * 30.0f,distribution(randomEngine) * 20.0f,0 };
-
-	// パーティクルの発生
-	EffectBorn(position);
+	// 乱数の初期化
+	srand((unsigned)time(NULL));
 }
 
 void GameScene::Update()
 {
-	for (Effect* effect : effects_) {
-		effect->Update();
-	}
-
+	// 終了フラグの立ってエフェクトを削除
 	effects_.remove_if([](Effect* effect) {
 		if (effect->IsFinished()) {
 			return true;
 		}
 		return false;
 		});
+
+	if (rand() % 20 == 0) {
+		// 発生位置は乱数
+		Vector3 position = { distribution(randomEngine) * 30.0f,distribution(randomEngine) * 20.0f,0 };
+		// パーティクルの発生
+		EffectBorn(position);
+	}
+
+	for (Effect* effect : effects_) {
+		effect->Update();
+	}
 }
 
 void GameScene::Draw()
