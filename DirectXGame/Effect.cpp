@@ -30,7 +30,7 @@ void Effect::Update()
 	worldTransform_.UpdateMatrix();
 }
 
-void Effect::Draw(Camera* camera,ObjectColor* objectColor)
+void Effect::Draw(Camera* camera)
 {
 	model_->Draw(worldTransform_, camera,&objectColor_);
 }

@@ -11,7 +11,7 @@ public:
 
 	void Update();
 
-	void Draw(KamataEngine::Camera* camera,KamataEngine::ObjectColor* objectColor);
+	void Draw(KamataEngine::Camera* camera);
 
 	bool IsFinished() {
 		return IsFinished_;
