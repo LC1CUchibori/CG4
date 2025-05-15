@@ -59,15 +59,17 @@ void Effect::Update()
 	worldTransform_.rotation_.z -= rotationSpeed * (3.14159265f / 180.0f); 
 
 	// 色のランダム
-	color_.x = std::clamp(t * 2.0f, 1.0f, 1.0f); 
-	color_.y = std::clamp(t * 2.0f, 0.0f, 1.0f); 
-	color_.z = std::clamp(t * 4.0f - 1.0f, 0.0f, 1.0f); 
-
-	// フラッシュ色
-	if (t < 0.2f) {
-		color_ = {1, 1, 1, 1}; // 白
-	} else {
-		color_ = {1, 0, 0, 1.0f - t}; // 赤 → フェードアウト
+	if (t < 0.5f) {
+		float ratio = t / 0.5f;  // 0.0～1.0
+		color_.x = ratio;        // 赤：0→1
+		color_.y = 0.0f;         // 緑：0
+		color_.z = 1.0f - ratio; // 青：1→0
+	}
+	else {
+		float ratio = (t - 0.5f) / 0.5f;  // 0.0～1.0
+		color_.x = 1.0f - ratio; // 赤：1→0
+		color_.y = ratio;        // 緑：0→1
+		color_.z = 0.0f;         // 青：0
 	}
 	
 	// 左右移動（揺れ）
