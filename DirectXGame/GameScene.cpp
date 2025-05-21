@@ -10,11 +10,13 @@ GameScene::~GameScene()
 {
 	delete effect_;
 	delete effectModel_;
+
+	Model2::StaticFinalize();
 }
 
 void GameScene::Initialize()
 {
-	effectModel_ = Model::Create();
+	effectModel_ = Model2::Create();
 
 	// エフェクトの生成
 	effect_ = new Effect();
@@ -23,6 +25,9 @@ void GameScene::Initialize()
 
 	 // カメラの初期化
 	camera_.Initialize();
+
+	// Model2の初期化
+	Model2::StaticInitialize();
 }
 
 void GameScene::Update()
@@ -36,11 +41,11 @@ void GameScene::Draw()
 	DirectXCommon* dxCommn = DirectXCommon::GetInstance();
 
 	// 3Dモデル描画前処理
-	Model::PreDraw(dxCommn->GetCommandList());
+	Model2::PreDraw(dxCommn->GetCommandList());
 
 	// パーティクルの描画
 	effect_->Draw(&camera_);
 
 	// 3Dモデル描画後処理
-	Model::PostDraw();
+	Model2::PostDraw();
 }

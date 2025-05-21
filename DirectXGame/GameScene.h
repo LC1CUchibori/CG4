@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 #include "Effect.h"
+#include "Model2.h"
 
 class GameScene
 {
@@ -26,6 +27,6 @@ private:
 	KamataEngine::Camera camera_;
 
 	// エフェクトモデル描画
-	KamataEngine::Model* effectModel_ = nullptr;
+	KamataEngine::Model2* effectModel_ = nullptr;
 };
 

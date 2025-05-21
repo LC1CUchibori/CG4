@@ -1,13 +1,14 @@
 #pragma once
 
 #include <KamataEngine.h>
+#include "Model2.h"
 
 // エフェクト
 class Effect
 {
 public:
 
-	void Initialize(KamataEngine::Model* model);
+	void Initialize(KamataEngine::Model2* model);
 
 	void Update();
 
@@ -16,6 +17,6 @@ private:
 	// ワールド変換データ
 	KamataEngine::WorldTransform worldTransform_;
 	// モデル
-	KamataEngine::Model* model_ = nullptr;
+	KamataEngine::Model2* model_ = nullptr;
 };
 
