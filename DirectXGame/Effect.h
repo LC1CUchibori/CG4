@@ -7,7 +7,7 @@ class Effect
 {
 public:
 
-	void Initialize(KamataEngine::Model* model,KamataEngine::Vector3 scale,KamataEngine::Vector3 rotation,KamataEngine::Vector3 position);
+	void Initialize(KamataEngine::Model* model,KamataEngine::Vector3 scale,KamataEngine::Vector3 rotation,KamataEngine::Vector3 position,KamataEngine:: Vector3 velocity);
 
 	void Update();
 
@@ -39,5 +39,7 @@ private:
 	float counter_ = 0.0f;
 	// 存続時間(消滅までの時間)<秒>
 	const float kDuration = 1.0f;
+
+	KamataEngine::Vector3 velocity_;
 };
 

@@ -77,8 +77,9 @@ void GameScene::EffectBorn(Vector3 position)
 		KamataEngine::Vector3 scale = { 3.0f, scaleDistribution(randomEngine), 3.0f };
 		// 角度
 		KamataEngine::Vector3 rotation = { 0.0f, 0.0f, rotationDistribution(randomEngine) };
+		Vector3 velocity = {distribution(randomEngine)*0.5f, 1.0f + distribution(randomEngine)*0.5f, 0};
 		// 初期化
-		effect->Initialize(effectModel_, scale, rotation, position);
+		effect->Initialize(effectModel_, scale, rotation, position, velocity);
 		// リストに追加
 		effects_.push_back(effect);
 	}
