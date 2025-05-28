@@ -17,7 +17,17 @@ void Effect::Initialize(Model* model,Vector3 scale, Vector3 rotation,Vector3 pos
 	velocity_ = velocity;
 
 	objectColor_.Initialize();
-	color_ = {1, 1, 1, 1};
+	
+    // ランダムに色を選択（赤・青・黄・紫）
+    int colorIndex = rand() % 6;
+    switch (colorIndex) {
+    case 0: color_ = {1, 0, 0, 1}; break; // 赤
+    case 1: color_ = {0, 0, 1, 1}; break; // 青
+    case 2: color_ = {1, 1, 0, 1}; break; // 黄
+    case 3: color_ = {1, 0, 1, 1}; break; // 紫
+    case 4: color_ = {1, 0.5f, 0.75f, 1}; break;// ピンク
+    case 5: color_ = {1, 1, 1, 1}; break;       // 白
+    }
 
 
 	worldTransform_.Initialize();
@@ -47,12 +57,7 @@ void Effect::Update()
     float scaleFactor = 1.0f - (counter_ / kDuration);
     worldTransform_.scale_.x *= scaleFactor;
 
-    float t = counter_ / kDuration;  // 0.0 ～ 1.0 の進行度
-    color_.x = 1.0f;                // R は常に最大
-    color_.y = 1.0f - t;            // G は徐々に減る（黄色→赤）
-    color_.z = 0.0f;                // B はゼロ
-    color_.w = std::clamp(1.0f - t, 0.0f, 1.0f);  // アルファはフェードアウト
-
+    color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
     objectColor_.SetColor(color_);
 
     worldTransform_.UpdateMatrix();
