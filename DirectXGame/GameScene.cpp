@@ -37,11 +37,6 @@ void GameScene::Initialize()
 
 void GameScene::Update()
 {
-	// パーティクルの更新
-	for (Particle* particle : particles_) {
-		particle->Update();
-	}
-
 	particles_.remove_if([](Particle* particle) {
 		if (particle->IsFinished()) {
 			return true;
@@ -58,6 +53,11 @@ void GameScene::Update()
 
 		// パーティクルの発生
 		ParticleBorn(position);
+	}
+
+	// パーティクルの更新
+	for (Particle* particle : particles_) {
+		particle->Update();
 	}
 }
 
