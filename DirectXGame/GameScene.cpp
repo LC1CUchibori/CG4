@@ -16,7 +16,7 @@ GameScene::~GameScene()
 
 void GameScene::Initialize()
 {
-	effectModel_ = Model2::Create();
+	effectModel_ = Model2::CreateSquare();
 
 	// エフェクトの生成
 	effect_ = new Effect();
