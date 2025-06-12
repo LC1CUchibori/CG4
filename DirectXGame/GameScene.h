@@ -28,5 +28,7 @@ private:
 
 	// エフェクトモデル描画
 	KamataEngine::Model2* effectModel_ = nullptr;
+
+	uint32_t textureHandle_ = 0;
 };
 

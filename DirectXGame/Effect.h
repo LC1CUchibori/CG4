@@ -12,7 +12,7 @@ public:
 
 	void Update();
 
-	void Draw(KamataEngine::Camera* camera);
+	void Draw(KamataEngine::Camera* camera,uint32_t textureHandle);
 private:
 	// ワールド変換データ
 	KamataEngine::WorldTransform worldTransform_;

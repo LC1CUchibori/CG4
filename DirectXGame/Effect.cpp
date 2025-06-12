@@ -20,7 +20,7 @@ void Effect::Update()
 	worldTransform_.TransferMatrix();
 }
 
-void Effect::Draw(Camera* camera)
+void Effect::Draw(Camera* camera,uint32_t textureHandle)
 {
-	model_->Draw(worldTransform_, *camera);
+	model_->Draw(worldTransform_, *camera,textureHandle);
 }

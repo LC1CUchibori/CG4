@@ -187,6 +187,8 @@ namespace KamataEngine {
 		/// <param name="lightGroup">ライトグループ</param>
 		void SetLightGroup(const LightGroup* lightGroup) { lightGroup_ = lightGroup; }
 
+		void SetTextureHandle(uint32_t handle) { textureHandle_ = handle; }
+
 	private: // メンバ変数
 		// 名前
 		std::string name_;
@@ -198,6 +200,8 @@ namespace KamataEngine {
 		std::unique_ptr<Material> defaultMaterial_ = nullptr;
 		// ライト
 		const LightGroup* lightGroup_ = nullptr;
+
+		uint32_t textureHandle_ = 0;
 
 	private: // メンバ関数
 		/// <summary>
