@@ -131,7 +131,7 @@ namespace KamataEngine {
 		return instance;
 	}
 
-	Model2* Model2::CreateSquare()
+	Model2* Model2::CreateSquare(uint32_t squareCount)
 	{
 		
 		// メモリ確保
@@ -139,38 +139,40 @@ namespace KamataEngine {
 		std::vector<Mesh::VertexPosNormalUv> vertices;
 		std::vector<uint32_t> indices;
 
-		const uint32_t kNumVertices = 4;
-		const uint32_t kNumIndices = 6;
+		const float squareWidth = 10.0f; 
 
-		vertices.resize(kNumVertices);
-		indices.resize(kNumIndices);
+		vertices.resize(4 * squareCount);
+		indices.resize(6 * squareCount);
 
+		for (uint32_t i = 0; i < squareCount; ++i) {
+			uint32_t vertexIndex = i * 4;
+			float xOffset = (i - (squareCount - 1) / 2.0f) * squareWidth;
 
+			vertices[vertexIndex + 0].pos = {-5.0f + xOffset, -5.0f, 0.0f};
+			vertices[vertexIndex + 1].pos = {-5.0f + xOffset,  5.0f, 0.0f};
+			vertices[vertexIndex + 2].pos = { 5.0f + xOffset, -5.0f, 0.0f};
+			vertices[vertexIndex + 3].pos = { 5.0f + xOffset,  5.0f, 0.0f};
 
-		// 左下
-		vertices[0].pos = {-5.0f, -5.0f, 0.0f};
-		vertices[0].uv = {0.0f, 1.0f};
-		vertices[0].normal = {0.0f, 0.0f, -1.0f};
-		
-		// 左上
-		vertices[1].pos = {-5.0f, 5.0f, 0.0f};
-		vertices[1].uv = {0.0f, 0.0f};
-		vertices[1].normal = {0.0f, 0.0f, -1.0f};
+			// UV
+			vertices[vertexIndex + 0].uv = {0.0f, 1.0f};
+			vertices[vertexIndex + 1].uv = {0.0f, 0.0f};
+			vertices[vertexIndex + 2].uv = {1.0f, 1.0f};
+			vertices[vertexIndex + 3].uv = {1.0f, 0.0f};
 
-		// 右下
-		vertices[2].pos = {5.0f, -5.0f, 0.0f};
-		vertices[2].uv = {1.0f, 1.0f};
-		vertices[2].normal = {0.0f, 0.0f, -1.0f};
+			// 法線
+			for (int j = 0; j < 4; ++j) {
+				vertices[vertexIndex + j].normal = {0.0f, 0.0f, -1.0f};
+			}
 
-		// 右上
-		vertices[3].pos = {5.0f, 5.0f, 0.0f};
-		vertices[3].uv = {1.0f, 0.0f};
-		vertices[3].normal = {0.0f, 0.0f, -1.0f};
-
-
-		// インデックス
-		indices[0] = 0;  indices[1] = 1; indices[2] = 2;
-		indices[3] = 1;  indices[4] = 3; indices[5] = 2;
+			// インデックス
+			uint32_t indexIndex = i * 6;
+			indices[indexIndex + 0] = vertexIndex + 0;
+			indices[indexIndex + 1] = vertexIndex + 1;
+			indices[indexIndex + 2] = vertexIndex + 2;
+			indices[indexIndex + 3] = vertexIndex + 1;
+			indices[indexIndex + 4] = vertexIndex + 3;
+			indices[indexIndex + 5] = vertexIndex + 2;
+		}
 
 		instance->InitializeFromVertices(vertices, indices);
 
