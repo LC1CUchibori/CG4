@@ -133,7 +133,6 @@ namespace KamataEngine {
 
 	Model2* Model2::CreateSquare(uint32_t squareCount)
 	{
-		
 		// メモリ確保
 		Model2* instance = new Model2;
 		std::vector<Mesh::VertexPosNormalUv> vertices;
