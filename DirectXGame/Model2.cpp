@@ -143,6 +143,13 @@ namespace KamataEngine {
 		vertices.resize(4 * squareCount);
 		indices.resize(6 * squareCount);
 
+		/*const uint32_t kRingDivide = 32;
+		const float kOuterRadius = 1.0f;
+		const float kInnerRadius = 0.2f;
+		const float radianPerDivide = 2.0f * std::numbers::pi_v<float> / float(kRingDivide);*/
+
+		/*for(uint32_t index=0; index<kRingDivide;++index)*/
+
 		for (uint32_t i = 0; i < squareCount; ++i) {
 			uint32_t vertexIndex = i * 4;
 			float xOffset = (i - (squareCount - 1) / 2.0f) * squareWidth;
