@@ -138,6 +138,8 @@ namespace KamataEngine {
 		static Model2* CreateSphere(uint32_t divisionVertial = 10, uint32_t divisionHorizontal = 10);
 
 		static Model2* CreateSquare(uint32_t squareCount);
+
+		static Model2* CreateRing();
 		/// <summary>
 		/// 描画前処理
 		/// </summary>

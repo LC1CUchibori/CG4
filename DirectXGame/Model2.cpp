@@ -138,46 +138,84 @@ namespace KamataEngine {
 		std::vector<Mesh::VertexPosNormalUv> vertices;
 		std::vector<uint32_t> indices;
 
-		const float squareWidth = 10.0f; 
+	
 
 		vertices.resize(4 * squareCount);
 		indices.resize(6 * squareCount);
 
-		/*const uint32_t kRingDivide = 32;
-		const float kOuterRadius = 1.0f;
-		const float kInnerRadius = 0.2f;
-		const float radianPerDivide = 2.0f * std::numbers::pi_v<float> / float(kRingDivide);*/
+		const uint32_t kRingDivide =20;
+		const float kOuterRadius = 10.0f;
+		const float kInnerRadius = 2.0f;
+		const float radianPerDivide = 2.0f * std::numbers::pi_v<float> / float(kRingDivide);
 
-		/*for(uint32_t index=0; index<kRingDivide;++index)*/
+		for (uint32_t index = 0; index < kRingDivide; ++index) {
+			float sin = std::sin(index * radianPerDivide);
+			float cos = std::cos(index * radianPerDivide);
+			float sinNext = std::sin((index + 1) * radianPerDivide);
+			float cosNext = std::cos((index + 1) * radianPerDivide);
+			float u = float(index) / float(kRingDivide);
+			float uNext = float(index + 1) / float(kRingDivide);
 
-		for (uint32_t i = 0; i < squareCount; ++i) {
-			uint32_t vertexIndex = i * 4;
-			float xOffset = (i - (squareCount - 1) / 2.0f) * squareWidth;
+			
+			vertices.push_back({ { -sin * kOuterRadius, cos * kOuterRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { u, 0.0f } });
+			vertices.push_back({ { -sin * kInnerRadius, cos * kInnerRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { u, 1.0f } });
+			vertices.push_back({ { -sinNext * kOuterRadius, cosNext * kOuterRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { uNext, 0.0f } }); 
+			vertices.push_back({ { -sinNext * kInnerRadius, cosNext * kInnerRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { uNext, 1.0f } }); 
 
-			vertices[vertexIndex + 0].pos = {-5.0f + xOffset, -5.0f, 0.0f};
-			vertices[vertexIndex + 1].pos = {-5.0f + xOffset,  5.0f, 0.0f};
-			vertices[vertexIndex + 2].pos = { 5.0f + xOffset, -5.0f, 0.0f};
-			vertices[vertexIndex + 3].pos = { 5.0f + xOffset,  5.0f, 0.0f};
+			uint32_t baseIndex = index * 4;
 
-			// UV
-			vertices[vertexIndex + 0].uv = {0.0f, 1.0f};
-			vertices[vertexIndex + 1].uv = {0.0f, 0.0f};
-			vertices[vertexIndex + 2].uv = {1.0f, 1.0f};
-			vertices[vertexIndex + 3].uv = {1.0f, 0.0f};
+			// 三角形
+			indices.push_back(baseIndex + 0);
+			indices.push_back(baseIndex + 1);
+			indices.push_back(baseIndex + 2);
 
-			// 法線
-			for (int j = 0; j < 4; ++j) {
-				vertices[vertexIndex + j].normal = {0.0f, 0.0f, -1.0f};
-			}
+			// 三角形
+			indices.push_back(baseIndex + 1);
+			indices.push_back(baseIndex + 3);
+			indices.push_back(baseIndex + 2);
+		}
 
-			// インデックス
-			uint32_t indexIndex = i * 6;
-			indices[indexIndex + 0] = vertexIndex + 0;
-			indices[indexIndex + 1] = vertexIndex + 1;
-			indices[indexIndex + 2] = vertexIndex + 2;
-			indices[indexIndex + 3] = vertexIndex + 1;
-			indices[indexIndex + 4] = vertexIndex + 3;
-			indices[indexIndex + 5] = vertexIndex + 2;
+		instance->InitializeFromVertices(vertices, indices);
+
+		return instance;
+	}
+
+	Model2* Model2::CreateRing() {
+		// メモリ確保
+		Model2* instance = new Model2;
+		std::vector<Mesh::VertexPosNormalUv> vertices;
+		std::vector<uint32_t> indices;
+
+		const uint32_t kRingDivide =20;
+		const float kOuterRadius = 10.0f;
+		const float kInnerRadius = 2.0f;
+		const float radianPerDivide = 2.0f * std::numbers::pi_v<float> / float(kRingDivide);
+
+		for (uint32_t index = 0; index < kRingDivide; ++index) {
+			float sin = std::sin(index * radianPerDivide);
+			float cos = std::cos(index * radianPerDivide);
+			float sinNext = std::sin((index + 1) * radianPerDivide);
+			float cosNext = std::cos((index + 1) * radianPerDivide);
+			float u = float(index) / float(kRingDivide);
+			float uNext = float(index + 1) / float(kRingDivide);
+
+
+			vertices.push_back({ { -sin * kOuterRadius, cos * kOuterRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { u, 0.0f } });
+			vertices.push_back({ { -sin * kInnerRadius, cos * kInnerRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { u, 1.0f } });
+			vertices.push_back({ { -sinNext * kOuterRadius, cosNext * kOuterRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { uNext, 0.0f } }); 
+			vertices.push_back({ { -sinNext * kInnerRadius, cosNext * kInnerRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { uNext, 1.0f } }); 
+
+			uint32_t baseIndex = index * 4;
+
+			// 三角形
+			indices.push_back(baseIndex + 0);
+			indices.push_back(baseIndex + 1);
+			indices.push_back(baseIndex + 2);
+
+			// 三角形
+			indices.push_back(baseIndex + 1);
+			indices.push_back(baseIndex + 3);
+			indices.push_back(baseIndex + 2);
 		}
 
 		instance->InitializeFromVertices(vertices, indices);
