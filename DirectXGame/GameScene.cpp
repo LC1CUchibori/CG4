@@ -21,7 +21,7 @@ void GameScene::Initialize()
 
 	textureHandle_ = TextureManager::Load("uvChecker.png");
 
-	effectModel_ = Model2::CreateSquare(5);
+	effectModel_ = Model2::CreateRing(5);
 	effectModel_->SetTextureHandle(textureHandle_);
 
 	// エフェクトの生成

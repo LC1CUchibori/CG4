@@ -139,7 +139,7 @@ namespace KamataEngine {
 
 		static Model2* CreateSquare(uint32_t squareCount);
 
-		static Model2* CreateRing();
+		static Model2* CreateRing(uint32_t squareCount);
 		/// <summary>
 		/// 描画前処理
 		/// </summary>
