@@ -30,5 +30,6 @@ private:
 	float fallSpeed_ = 5.0f;             // Y方向のスピード
 	float oscillationTime_ = 0.0f;       // 揺れ用の時間
 	bool isTitleStopped_ = false;        // 停止フラグ
+	bool isTitleMoving_ = false;
 };
 

@@ -1,4 +1,5 @@
 #include "TitleScene.h"
+#include <cmath>
 
 using namespace KamataEngine;
 
@@ -15,17 +16,27 @@ TitleScene::~TitleScene()
 void TitleScene::Initialize()
 {
 	TitleTextureHandle_ = TextureManager::Load("title.png");
-
-	TitleSprite_ = Sprite::Create(TitleTextureHandle_, { 150,50 });
-
+	TitleSprite_ = Sprite::Create(TitleTextureHandle_, { 150 + 50, -100 }); 
 	BGTextureHandle_ = TextureManager::Load("BG.png");
-
 	BGSprite_ = KamataEngine::Sprite::Create(BGTextureHandle_, { 0,0 });
+
+	titleY_ = -100.0f;
+	targetY_ = 50.0f;
+	isTitleMoving_ = false;
+	isTitleStopped_ = false;
+	oscillationTime_ = 0.0f;
 }
 
 void TitleScene::Update()
 {
-	if (!isTitleStopped_) {
+	Input* input = Input::GetInstance();
+
+	// スペースキーが押されたら移動開始
+	if (!isTitleMoving_ && input->TriggerKey(DIK_RETURN)) {
+		isTitleMoving_ = true;
+	}
+
+	if (isTitleMoving_ && !isTitleStopped_) {
 		// Y座標のイージング移動
 		float deltaY = targetY_ - titleY_;
 		titleY_ += deltaY * 0.03f;
@@ -33,7 +44,7 @@ void TitleScene::Update()
 		// 揺れの時間更新
 		oscillationTime_ += 0.01f;
 
-		// X座標
+		// X座標揺れ
 		float offsetX = std::sin(oscillationTime_) * 10.0f;
 
 		// 停止条件
@@ -43,7 +54,7 @@ void TitleScene::Update()
 			offsetX = 0.0f;
 		}
 
-		// スプライト位置設定
+		// スプライト位置設定（揺れ含む）
 		TitleSprite_->SetPosition({ 150 + 50, titleY_ });
 	}
 }
@@ -57,9 +68,8 @@ void TitleScene::Draw()
 	Sprite::PreDraw(dxCommn->GetCommandList());
 
 	BGSprite_->Draw();
+	TitleSprite_->Draw();
 
-	TitleSprite_ -> Draw();
-	
 	// 3Dモデル描画後処理
 	Sprite::PostDraw();
 }
