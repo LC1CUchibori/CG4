@@ -78,7 +78,7 @@ void ChangeScene()
 	switch (scene)
 	{
 	case Scene::kTitleScene:
-		if (Input::GetInstance()->TriggerKey(DIK_SPACE)) {
+		if (Input::GetInstance()->TriggerKey(DIK_RETURN)) {
 			// シーンの変更
 			scene = Scene::kGame;
 			// 旧シーンの解放

@@ -20,6 +20,11 @@ private:
 	// タイトルスプライト
 	KamataEngine::Sprite* TitleSprite_ = nullptr;
 
+	// タイトル操作テクスチャハンドル
+	uint32_t HitTextureHandle_ = 0;
+	// タイトル操作スプライト
+	KamataEngine::Sprite* HitSprite_ = nullptr;
+
 	// 背景テクスチャハンドル
 	uint32_t BGTextureHandle_ = 0;
 	// 背景スプライト
@@ -31,5 +36,7 @@ private:
 	float oscillationTime_ = 0.0f;       // 揺れ用の時間
 	bool isTitleStopped_ = false;        // 停止フラグ
 	bool isTitleMoving_ = false;
+
+	float hitAlphaTime_ = 0.0f;
 };
 

@@ -17,6 +17,10 @@ void TitleScene::Initialize()
 {
 	TitleTextureHandle_ = TextureManager::Load("title.png");
 	TitleSprite_ = Sprite::Create(TitleTextureHandle_, { 150 + 50, -100 }); 
+
+	HitTextureHandle_ = TextureManager::Load("Hit.png");
+	HitSprite_ = Sprite::Create(HitTextureHandle_, { 170,200 });
+
 	BGTextureHandle_ = TextureManager::Load("BG.png");
 	BGSprite_ = KamataEngine::Sprite::Create(BGTextureHandle_, { 0,0 });
 
@@ -25,6 +29,8 @@ void TitleScene::Initialize()
 	isTitleMoving_ = false;
 	isTitleStopped_ = false;
 	oscillationTime_ = 0.0f;
+
+	hitAlphaTime_ = 0.0f;
 }
 
 void TitleScene::Update()
@@ -32,7 +38,7 @@ void TitleScene::Update()
 	Input* input = Input::GetInstance();
 
 	// スペースキーが押されたら移動開始
-	if (!isTitleMoving_ && input->TriggerKey(DIK_RETURN)) {
+	if (!isTitleMoving_ && input->TriggerKey(DIK_SPACE)) {
 		isTitleMoving_ = true;
 	}
 
@@ -57,6 +63,16 @@ void TitleScene::Update()
 		// スプライト位置設定（揺れ含む）
 		TitleSprite_->SetPosition({ 150 + 50, titleY_ });
 	}
+
+	// α値用タイマーを進める
+	hitAlphaTime_ += 1.0f / 60.0f;  // 60FPS前提
+
+	// α値をsin波で滑らかに変化（0.0～1.0）
+	float alpha = (std::sin(hitAlphaTime_ * 3.14f * 2.0f) + 1.0f) * 0.5f;
+
+	// スプライトに色設定（R,G,B=1.0f, αだけ変化）
+	HitSprite_->SetColor({ 1.0f, 1.0f, 1.0f, alpha });
+
 }
 
 void TitleScene::Draw()
@@ -69,6 +85,7 @@ void TitleScene::Draw()
 
 	BGSprite_->Draw();
 	TitleSprite_->Draw();
+	HitSprite_->Draw();
 
 	// 3Dモデル描画後処理
 	Sprite::PostDraw();
