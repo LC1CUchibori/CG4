@@ -1,6 +1,10 @@
 #pragma once
+
+
 #include <cstdint>
 #include <KamataEngine.h>
+#include "Stage.h"
+
 
 class TitleScene
 {
@@ -20,10 +24,7 @@ private:
 	// タイトルスプライト
 	KamataEngine::Sprite* TitleSprite_ = nullptr;
 
-	// 背景テクスチャハンドル
-	uint32_t BGTextureHandle_ = 0;
-	// 背景スプライト
-	KamataEngine::Sprite* BGSprite_ = nullptr;
+	Stage* stage = nullptr;
 
 	float titleY_ = -100.0f;             // 初期Y座標（画面上からスタート）
 	float targetY_ = 200.0f;             // 到達Y座標（真ん中）

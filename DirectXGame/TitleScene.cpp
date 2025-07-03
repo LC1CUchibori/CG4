@@ -10,15 +10,15 @@ TitleScene::TitleScene()
 TitleScene::~TitleScene()
 {
 	delete TitleSprite_;
-	delete BGSprite_;
 }
 
 void TitleScene::Initialize()
 {
 	TitleTextureHandle_ = TextureManager::Load("title.png");
-	TitleSprite_ = Sprite::Create(TitleTextureHandle_, { 150 + 50, -100 }); 
-	BGTextureHandle_ = TextureManager::Load("BG.png");
-	BGSprite_ = KamataEngine::Sprite::Create(BGTextureHandle_, { 0,0 });
+	TitleSprite_ = Sprite::Create(TitleTextureHandle_, { 150 + 50, -100 });
+
+	stage = new Stage;
+	stage->Initialize();
 
 	titleY_ = -100.0f;
 	targetY_ = 50.0f;
@@ -57,6 +57,8 @@ void TitleScene::Update()
 		// スプライト位置設定（揺れ含む）
 		TitleSprite_->SetPosition({ 150 + 50, titleY_ });
 	}
+
+	stage->Update();
 }
 
 void TitleScene::Draw()
@@ -64,10 +66,23 @@ void TitleScene::Draw()
 	// DirectXCommon インスタンスの取得
 	DirectXCommon* dxCommn = DirectXCommon::GetInstance();
 
+#pragma region 背景スプライト描画
+	// 背景スプライト描画前処理
+	Sprite::PreDraw(dxCommn->GetCommandList());
+
+	/// <summary>
+	/// ここに背景スプライトの描画処理を追加できる
+	/// </summary>
+	stage->Draw();
+
+	// スプライト描画後処理
+	Sprite::PostDraw();
+#pragma endregion
+
+
 	// 3Dモデル描画前処理
 	Sprite::PreDraw(dxCommn->GetCommandList());
 
-	BGSprite_->Draw();
 	TitleSprite_->Draw();
 
 	// 3Dモデル描画後処理

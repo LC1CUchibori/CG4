@@ -44,6 +44,8 @@ void GameScene::Draw()
 	// DirectXCommon インスタンスの取得
 	DirectXCommon* dxCommn = DirectXCommon::GetInstance();
 
+
+
 	// 3Dモデル描画前処理
 	Model2::PreDraw(dxCommn->GetCommandList());
 
