@@ -99,6 +99,7 @@ void TitleScene::Draw()
 	Sprite::PreDraw(dxCommn->GetCommandList());
 
 	TitleSprite_->Draw();
+	HitSprite_->Draw();
 
 	// 3Dモデル描画後処理
 	Sprite::PostDraw();
