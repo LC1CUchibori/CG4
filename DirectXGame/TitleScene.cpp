@@ -17,6 +17,9 @@ void TitleScene::Initialize()
 	TitleTextureHandle_ = TextureManager::Load("title.png");
 	TitleSprite_ = Sprite::Create(TitleTextureHandle_, { 150 + 50, -100 });
 
+	HitTextureHandle_ = TextureManager::Load("Hit.png");
+	HitSprite_ = Sprite::Create(HitTextureHandle_, { 170,200 });
+
 	stage = new Stage;
 	stage->Initialize();
 

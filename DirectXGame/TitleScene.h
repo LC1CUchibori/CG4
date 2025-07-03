@@ -24,6 +24,11 @@ private:
 	// タイトルスプライト
 	KamataEngine::Sprite* TitleSprite_ = nullptr;
 
+	// タイトル操作テクスチャハンドル
+	uint32_t HitTextureHandle_ = 0;
+	// タイトル操作スプライト
+	KamataEngine::Sprite* HitSprite_ = nullptr;
+
 	Stage* stage = nullptr;
 
 	float titleY_ = -100.0f;             // 初期Y座標（画面上からスタート）
