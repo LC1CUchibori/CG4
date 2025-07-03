@@ -20,6 +20,9 @@ public:
 	void Draw();
 
 private:
+	KamataEngine::Model* model_ = nullptr;
+	KamataEngine::WorldTransform worldTransform_;
+
 	// エフェクト
 	Effect* effect_ = nullptr;
 
@@ -29,6 +32,10 @@ private:
 	// エフェクトモデル描画
 	KamataEngine::Model2* effectModel_ = nullptr;
 
+
 	uint32_t textureHandle_ = 0;
+
+	// プレイヤーテクスチャハンドル
+	uint32_t playerTextureHandle_ = 0;
 };
 
