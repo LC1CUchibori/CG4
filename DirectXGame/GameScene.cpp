@@ -37,6 +37,13 @@ void GameScene::Initialize()
 
 	worldTransform_.Initialize();
 
+	stage = new Stage;
+	stage->Initialize();
+
+	position_ = {0.0f, 0.0f, 0.0f};
+	worldTransform_.translation_ = position_;
+	worldTransform_.Initialize();
+
 	 // カメラの初期化
 	camera_.Initialize();
 }
@@ -44,6 +51,24 @@ void GameScene::Initialize()
 void GameScene::Update()
 {
 	effect_->Update();
+
+	stage->Update();
+
+	// プレイヤー移動入力処理
+	const float speed = 0.2f;
+
+	if (Input::GetInstance()->PushKey(DIK_LEFT)) {
+		position_.x -= speed;
+	}
+	if (Input::GetInstance()->PushKey(DIK_RIGHT)) {
+		position_.x += speed;
+	}
+	if (Input::GetInstance()->PushKey(DIK_UP)) {
+		position_.y += speed;
+	}
+	if (Input::GetInstance()->PushKey(DIK_DOWN)) {
+		position_.y -= speed;
+	}
 }
 
 void GameScene::Draw()
@@ -51,7 +76,21 @@ void GameScene::Draw()
 	// DirectXCommon インスタンスの取得
 	DirectXCommon* dxCommn = DirectXCommon::GetInstance();
 
+#pragma region 背景スプライト描画
+	// 背景スプライト描画前処理
+	Sprite::PreDraw(dxCommn->GetCommandList());
+
+	/// <summary>
+	/// ここに背景スプライトの描画処理を追加できる
+	/// </summary>
+	stage->Draw();
+
+	// スプライト描画後処理
+	Sprite::PostDraw();
+#pragma endregion
+
 #pragma region 3Dオブジェクト描画
+	dxCommn->ClearDepthBuffer();
 	// 3Dオブジェクト描画前処理
 	Model::PreDraw(dxCommn->GetCommandList());
 
@@ -64,6 +103,7 @@ void GameScene::Draw()
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion
+
 
 	// 3Dモデル描画前処理
 	Model2::PreDraw(dxCommn->GetCommandList());
