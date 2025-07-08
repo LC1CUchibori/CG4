@@ -3,6 +3,7 @@
 #include "Effect.h"
 #include "Model2.h"
 #include "Stage.h"
+#include "Player.h"
 
 class GameScene
 {
@@ -24,22 +25,13 @@ private:
 	KamataEngine::Model* model_ = nullptr;
 	KamataEngine::WorldTransform worldTransform_;
 
-	// エフェクト
-	Effect* effect_ = nullptr;
-
 	// カメラ
 	KamataEngine::Camera camera_;
 
-	// エフェクトモデル描画
-	KamataEngine::Model2* effectModel_ = nullptr;
-
 	uint32_t textureHandle_ = 0;
 
-	// プレイヤーテクスチャハンドル
-	uint32_t playerTextureHandle_ = 0;
-
-	KamataEngine::Vector3 position_ = {0.0f, 0.0f, 0.0f};
-
 	Stage* stage = nullptr;
+
+	Player* player_ = nullptr;
 };
 
