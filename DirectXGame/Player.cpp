@@ -21,7 +21,6 @@ void Player::Initialize(KamataEngine::Model* model,uint32_t textureHandle,Kamata
 	input = Input::GetInstance(); 
 
 	position_ = {0.0f, 0.0f, 0.0f};
-	worldTransform_.translation_ = position_;
 	worldTransform_.Initialize();
 }
 
@@ -44,6 +43,7 @@ void Player::Update()
 	}
 
 	worldTransform_.translation_ = position_;
+	worldTransform_.UpdateMatrix();
 	// 行列を定数バッファに転送
 	worldTransform_.TransferMatrix();
 }
