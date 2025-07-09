@@ -3,6 +3,7 @@
 #include "Effect.h"
 #include "Model2.h"
 #include "Stage.h"
+#include "Player.h"
 
 class GameScene
 {
@@ -35,10 +36,11 @@ private:
 
 	uint32_t textureHandle_ = 0;
 
+	Player* player_ = nullptr;
+	KamataEngine::Model* playerModel_ = nullptr;
+
 	// プレイヤーテクスチャハンドル
 	uint32_t playerTextureHandle_ = 0;
-
-	KamataEngine::Vector3 position_ = {0.0f, 0.0f, 0.0f};
 
 	Stage* stage = nullptr;
 };

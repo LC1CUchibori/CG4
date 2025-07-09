@@ -11,6 +11,7 @@ GameScene::~GameScene()
 	delete effect_;
 	delete effectModel_;
 	delete model_;
+	delete player_;
 
 	Model2::StaticFinalize();
 }
@@ -30,45 +31,31 @@ void GameScene::Initialize()
 	// パーティクルの初期化
 	effect_->Initialize(effectModel_);
 
-	// 3Dモデルの生成
-	model_ = Model::Create();
 
 	playerTextureHandle_ = TextureManager::Load("BlackORE.png");
+	// 3Dモデルの生成
+	playerModel_ = Model::Create();
 
-	worldTransform_.Initialize();
+	// プレイヤーの生成と初期化
+	player_ = new Player();
+	player_->Initialize(playerModel_,playerTextureHandle_,&camera_);
 
 	stage = new Stage;
 	stage->Initialize();
 
-	position_ = {0.0f, 0.0f, 0.0f};
-	worldTransform_.translation_ = position_;
 	worldTransform_.Initialize();
-
 	 // カメラの初期化
 	camera_.Initialize();
 }
 
 void GameScene::Update()
 {
+
 	effect_->Update();
 
 	stage->Update();
 
-	// プレイヤー移動入力処理
-	const float speed = 0.2f;
-
-	if (Input::GetInstance()->PushKey(DIK_LEFT)) {
-		position_.x -= speed;
-	}
-	if (Input::GetInstance()->PushKey(DIK_RIGHT)) {
-		position_.x += speed;
-	}
-	if (Input::GetInstance()->PushKey(DIK_UP)) {
-		position_.y += speed;
-	}
-	if (Input::GetInstance()->PushKey(DIK_DOWN)) {
-		position_.y -= speed;
-	}
+	player_->Update();
 }
 
 void GameScene::Draw()
@@ -94,7 +81,7 @@ void GameScene::Draw()
 	// 3Dオブジェクト描画前処理
 	Model::PreDraw(dxCommn->GetCommandList());
 
-	model_->Draw(worldTransform_, camera_, playerTextureHandle_);
+	player_->Draw(&camera_, playerTextureHandle_);
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
