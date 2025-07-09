@@ -198,21 +198,21 @@ namespace KamataEngine {
 			float uNext = float(index + 1) / float(kRingDivide);
 
 
-			vertices.push_back({ { -sin * kOuterRadius, cos * kOuterRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { u, 0.0f } });
-			vertices.push_back({ { -sin * kInnerRadius, cos * kInnerRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { u, 1.0f } });
-			vertices.push_back({ { -sinNext * kOuterRadius, cosNext * kOuterRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { uNext, 0.0f } });
-			vertices.push_back({ { -sinNext * kInnerRadius, cosNext * kInnerRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { uNext, 1.0f } });
+			vertices.push_back({ { sin * kOuterRadius, cos * kOuterRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { u, 0.0f } });
+			vertices.push_back({ { sin * kInnerRadius, cos * kInnerRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { u, 1.0f } });
+			vertices.push_back({ { sinNext * kOuterRadius, cosNext * kOuterRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { uNext, 0.0f } });
+			vertices.push_back({ { sinNext * kInnerRadius, cosNext * kInnerRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { uNext, 1.0f } });
 			uint32_t baseIndex = index * 4;
 
 			// 三角形
 			indices.push_back(baseIndex + 0);
-			indices.push_back(baseIndex + 1);
 			indices.push_back(baseIndex + 2);
+			indices.push_back(baseIndex + 1);
 
 			// 三角形
 			indices.push_back(baseIndex + 1);
-			indices.push_back(baseIndex + 3);
 			indices.push_back(baseIndex + 2);
+			indices.push_back(baseIndex + 3);
 		}
 
 		instance->InitializeFromVertices(vertices, indices);
