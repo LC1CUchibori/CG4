@@ -14,7 +14,7 @@ void Stage::Initialize() {
 	BGSprite_ = KamataEngine::Sprite::Create(BGTextureHandle_, { 0, 0 });
 }
 
-void Stage::Update() {
+void Stage::Update() { 
         if (totalScroll > -720.0f) {
             totalScroll -= scrollSpeed;
             if (totalScroll < -720.0f) {
