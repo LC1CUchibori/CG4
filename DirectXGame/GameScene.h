@@ -4,6 +4,7 @@
 #include "Model2.h"
 #include "Stage.h"
 #include "Player.h"
+#include "Graph.h"
 
 class GameScene
 {
@@ -43,5 +44,8 @@ private:
 	uint32_t playerTextureHandle_ = 0;
 
 	Stage* stage = nullptr;
+
+	Graph* graph_ = nullptr;
+	KamataEngine::Sprite* sprite_ = nullptr;
 };
 

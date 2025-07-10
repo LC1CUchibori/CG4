@@ -31,7 +31,6 @@ void GameScene::Initialize()
 	// パーティクルの初期化
 	effect_->Initialize(effectModel_);
 
-
 	playerTextureHandle_ = TextureManager::Load("BlackORE.png");
 	// 3Dモデルの生成
 	playerModel_ = Model::Create();
@@ -42,6 +41,14 @@ void GameScene::Initialize()
 
 	stage = new Stage;
 	stage->Initialize();
+
+	// HPバーの生成と初期化
+	sprite_ = new Sprite();
+	sprite_->Initialize();
+	//  グラフ生成
+	graph_->SetSize({30.0f,20.0f});
+	graph_->SetColor({ 1.0f, 0.0f, 0.0f, 1.0f });
+	graph_->SetPosition({ 5.0f,5.0f });
 
 	worldTransform_.Initialize();
 	 // カメラの初期化
@@ -70,6 +77,8 @@ void GameScene::Draw()
 	/// <summary>
 	/// ここに背景スプライトの描画処理を追加できる
 	/// </summary>
+	
+	// 背景の描画
 	stage->Draw();
 
 	// スプライト描画後処理
@@ -81,16 +90,32 @@ void GameScene::Draw()
 	// 3Dオブジェクト描画前処理
 	Model::PreDraw(dxCommn->GetCommandList());
 
-	player_->Draw(&camera_, playerTextureHandle_);
-
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	
+	// プレイヤーの描画
+	player_->Draw(&camera_, playerTextureHandle_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion
 
+#pragma region 前景スプライト描画
+	// 前景スプライト描画前処理
+	Sprite::PreDraw(dxCommn->GetCommandList());
+
+	/// <summary>
+	/// ここに前景スプライトの描画処理を追加できる
+	/// </summary>
+
+	// グラフの描画
+	graph_->Draw();
+
+	// スプライト描画後処理
+	Sprite::PostDraw();
+
+#pragma endregion
 
 	// 3Dモデル描画前処理
 	Model2::PreDraw(dxCommn->GetCommandList());
