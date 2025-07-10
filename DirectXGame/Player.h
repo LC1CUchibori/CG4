@@ -23,6 +23,6 @@ private:
 	// カメラ
 	KamataEngine::Camera* camera_ = nullptr;
 
-	KamataEngine::Vector3 position_ = {0.0f, 0.0f, 0.0f};
+	KamataEngine::Vector3 position_;
 };
 

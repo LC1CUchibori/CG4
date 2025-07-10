@@ -36,6 +36,10 @@ public:
 	void SetNearZ(float value) { camera_.nearZ = value; }
 	void SetFarZ(float value) { camera_.farZ = value; }
 
+public:
+	const Matrix4x4& GetViewMatrix() const { return matView_; }
+	const Matrix4x4& GetProjectionMatrix() const { return matProjection_; }
+
 private:
 	// 入力クラスのポインタ
 	Input* input_;
@@ -47,6 +51,8 @@ private:
 	// 回転行列
 	Matrix4x4 matRot_;
 
+	Matrix4x4 matView_;         // ビュー行列
+	Matrix4x4 matProjection_;
 	/// <summary>
 	/// 行列更新
 	/// </summary>

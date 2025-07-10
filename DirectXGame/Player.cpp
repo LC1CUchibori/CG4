@@ -29,16 +29,16 @@ void Player::Update()
 	// プレイヤー移動入力処理
 	const float speed = 0.2f;
 
-	if (input->PushKey(DIK_LEFT)) {
+	if (input->PushKey(DIK_A)) {
 		position_.x -= speed;
 	}
-	if (input->PushKey(DIK_RIGHT)) {
+	if (input->PushKey(DIK_D)) {
 		position_.x += speed;
 	}
-	if (input->PushKey(DIK_UP)) {
+	if (input->PushKey(DIK_W)) {
 		position_.y += speed;
 	}
-	if (input->PushKey(DIK_DOWN)) {
+	if (input->PushKey(DIK_S)) {
 		position_.y -= speed;
 	}
 

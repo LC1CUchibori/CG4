@@ -1,6 +1,5 @@
 #pragma once
 #include "KamataEngine.h"
-#include "Effect.h"
 #include "Model2.h"
 #include "Stage.h"
 #include "Player.h"
@@ -24,9 +23,7 @@ public:
 private:
 	KamataEngine::Model* model_ = nullptr;
 	KamataEngine::WorldTransform worldTransform_;
-
-	// エフェクト
-	Effect* effect_ = nullptr;
+	KamataEngine::Input* input = KamataEngine::Input::GetInstance();
 
 	// カメラ
 	KamataEngine::Camera camera_;
