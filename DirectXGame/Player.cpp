@@ -29,7 +29,7 @@ void Player::Update()
 	// プレイヤー移動入力処理
 	const float speed = 0.2f;
 
-	if (input->TriggerKey(DIK_LEFT)) {
+	if (input->PushKey(DIK_LEFT)) {
 		position_.x -= speed;
 	}
 	if (input->PushKey(DIK_RIGHT)) {
