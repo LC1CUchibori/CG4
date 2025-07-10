@@ -18,7 +18,8 @@ public:
 	void SetColor(const KamataEngine::Vector4& color);
 
 private:
-	KamataEngine::Sprite* sprite_ = nullptr;
+	KamataEngine::Sprite* RedSprite_ = nullptr;
+	KamataEngine::Sprite* GreenSprite_ = nullptr;
 	KamataEngine::Vector2 position_{};
-	KamataEngine::Vector2 size_{};
-}
+	KamataEngine::Vector2 size_;
+};

@@ -43,12 +43,18 @@ void GameScene::Initialize()
 	stage->Initialize();
 
 	// HPバーの生成と初期化
-	sprite_ = new Sprite();
-	sprite_->Initialize();
+	RedGraph_ = new Graph();
+	RedGraph_->Initialize();
 	//  グラフ生成
-	graph_->SetSize({30.0f,20.0f});
-	graph_->SetColor({ 1.0f, 0.0f, 0.0f, 1.0f });
-	graph_->SetPosition({ 5.0f,5.0f });
+	RedGraph_->SetSize({250.0f,50.0f});
+	RedGraph_->SetColor({ 1.0f, 0.0f, 0.0f, 0.5f });
+	RedGraph_->SetPosition({ 5.0f,5.0f });
+
+	GreenGraph_ = new Graph();
+	GreenGraph_->Initialize();
+	GreenGraph_->SetSize({250.0f,50.0f});
+	GreenGraph_->SetColor({ 0.0f, 1.0f, 0.0f, 0.5f });
+	GreenGraph_->SetPosition({ 5.0f,5.0f });
 
 	worldTransform_.Initialize();
 	 // カメラの初期化
@@ -110,7 +116,8 @@ void GameScene::Draw()
 	/// </summary>
 
 	// グラフの描画
-	graph_->Draw();
+	RedGraph_->Draw();
+	GreenGraph_->Draw();
 
 	// スプライト描画後処理
 	Sprite::PostDraw();

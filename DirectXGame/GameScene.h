@@ -45,7 +45,8 @@ private:
 
 	Stage* stage = nullptr;
 
-	Graph* graph_ = nullptr;
+	Graph* RedGraph_ = nullptr;
+	Graph* GreenGraph_ = nullptr;
 	KamataEngine::Sprite* sprite_ = nullptr;
 };
 
