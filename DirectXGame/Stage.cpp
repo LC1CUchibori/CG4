@@ -20,6 +20,7 @@ void Stage::Initialize()
 
 	ScrollBGTextureHandle_ = TextureManager::Load("BG2.png");
 	ScrollBGSprite_ = KamataEngine::Sprite::Create(ScrollBGTextureHandle_, { -1280,0 });
+
 }
 
 void Stage::Update()
