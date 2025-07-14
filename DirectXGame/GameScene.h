@@ -48,5 +48,8 @@ private:
 	Graph* RedGraph_ = nullptr;
 	Graph* GreenGraph_ = nullptr;
 	KamataEngine::Sprite* sprite_ = nullptr;
+
+	float hp_ = 100.0f;
+	bool isDamageActive_ = false; 
 };
 

@@ -17,6 +17,8 @@ public:
 	void SetPosition(const KamataEngine::Vector2& pos);
 	void SetColor(const KamataEngine::Vector4& color);
 
+	void SetGraphValue(float rate);
+
 private:
 	KamataEngine::Sprite* RedSprite_ = nullptr;
 	KamataEngine::Sprite* GreenSprite_ = nullptr;

@@ -69,6 +69,27 @@ void GameScene::Update()
 	stage->Update();
 
 	player_->Update();
+
+	Input* input = Input::GetInstance();
+
+	// スペースキーが押されたらHPを減らす
+	if (input->TriggerKey(DIK_SPACE)) {
+		isDamageActive_ = true;
+	}
+
+	// フラグが立っている間は毎フレームHPを減らす
+	if (isDamageActive_) {
+		hp_ -= 0.5f;  // フレームごとの減少量
+		if (hp_ <= 0.0f) {
+			hp_ = 0.0f;
+			isDamageActive_ = false;  // HPが尽きたら自動減少ストップ（必要なら）
+		}
+	}
+
+
+	// HPに応じてグラフの割合を更新
+	float rate = hp_ / 100.0f;
+	GreenGraph_->SetGraphValue(rate);
 }
 
 void GameScene::Draw()
