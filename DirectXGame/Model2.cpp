@@ -179,7 +179,6 @@ namespace KamataEngine {
 	}
 
 	Model2* Model2::CreateRing(uint32_t squareCount) {
-		// メモリ確保
 		Model2* instance = new Model2;
 		std::vector<Mesh::VertexPosNormalUv> vertices;
 		std::vector<uint32_t> indices;
@@ -197,26 +196,25 @@ namespace KamataEngine {
 			float u = float(index) / float(kRingDivide);
 			float uNext = float(index + 1) / float(kRingDivide);
 
+			// Z=0 上に XY平面でリングを配置（反時計回りにする）
+			vertices.push_back({ { cos * kOuterRadius, sin * kOuterRadius, 0.0f }, { 0.0f, 0.0f, 1.0f }, { u, 0.0f } });
+			vertices.push_back({ { cos * kInnerRadius, sin * kInnerRadius, 0.0f }, { 0.0f, 0.0f, 1.0f }, { u, 1.0f } });
+			vertices.push_back({ { cosNext * kOuterRadius, sinNext * kOuterRadius, 0.0f }, { 0.0f, 0.0f, 1.0f }, { uNext, 0.0f } });
+			vertices.push_back({ { cosNext * kInnerRadius, sinNext * kInnerRadius, 0.0f }, { 0.0f, 0.0f, 1.0f }, { uNext, 1.0f } });
 
-			vertices.push_back({ { sin * kOuterRadius, cos * kOuterRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { u, 0.0f } });
-			vertices.push_back({ { sin * kInnerRadius, cos * kInnerRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { u, 1.0f } });
-			vertices.push_back({ { sinNext * kOuterRadius, cosNext * kOuterRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { uNext, 0.0f } });
-			vertices.push_back({ { sinNext * kInnerRadius, cosNext * kInnerRadius, 0.0f }, {0.0f, 0.0f, 1.0f}, { uNext, 1.0f } });
 			uint32_t baseIndex = index * 4;
 
-			// 三角形
+			// 正しい反時計回りのインデックス順
 			indices.push_back(baseIndex + 0);
-			indices.push_back(baseIndex + 2);
 			indices.push_back(baseIndex + 1);
+			indices.push_back(baseIndex + 2);
 
-			// 三角形
-			indices.push_back(baseIndex + 1);
 			indices.push_back(baseIndex + 2);
+			indices.push_back(baseIndex + 1);
 			indices.push_back(baseIndex + 3);
 		}
 
 		instance->InitializeFromVertices(vertices, indices);
-
 		return instance;
 	}
 
