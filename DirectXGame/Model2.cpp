@@ -197,10 +197,10 @@ namespace KamataEngine {
 			float uNext = float(index + 1) / float(kRingDivide);
 
 			// Z=0 上に XY平面でリングを配置（反時計回りにする）
-			vertices.push_back({ { cos * kOuterRadius, sin * kOuterRadius, 0.0f }, { 0.0f, 0.0f, 1.0f }, { u, 0.0f } });
-			vertices.push_back({ { cos * kInnerRadius, sin * kInnerRadius, 0.0f }, { 0.0f, 0.0f, 1.0f }, { u, 1.0f } });
-			vertices.push_back({ { cosNext * kOuterRadius, sinNext * kOuterRadius, 0.0f }, { 0.0f, 0.0f, 1.0f }, { uNext, 0.0f } });
-			vertices.push_back({ { cosNext * kInnerRadius, sinNext * kInnerRadius, 0.0f }, { 0.0f, 0.0f, 1.0f }, { uNext, 1.0f } });
+			vertices.push_back({ { cos * kOuterRadius, sin * kOuterRadius, 0.0f }, { 0.0f, 0.0f, -1.0f }, { u, 0.0f } });
+			vertices.push_back({ { cos * kInnerRadius, sin * kInnerRadius, 0.0f }, { 0.0f, 0.0f, -1.0f }, { u, 1.0f } });
+			vertices.push_back({ { cosNext * kOuterRadius, sinNext * kOuterRadius, 0.0f }, { 0.0f, 0.0f, -1.0f }, { uNext, 0.0f } });
+			vertices.push_back({ { cosNext * kInnerRadius, sinNext * kInnerRadius, 0.0f }, { 0.0f, 0.0f, -1.0f }, { uNext, 1.0f } });
 
 			uint32_t baseIndex = index * 4;
 
