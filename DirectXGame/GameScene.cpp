@@ -13,6 +13,10 @@ GameScene::~GameScene()
 	delete model_;
 	delete player_;
 
+	for (int i = 0; i < 5; i++) {
+		delete numberSprite_[i];
+	}
+
 	Model2::StaticFinalize();
 }
 
@@ -56,6 +60,12 @@ void GameScene::Initialize()
 	GreenGraph_->SetColor({ 0.0f, 1.0f, 0.0f, 0.5f });
 	GreenGraph_->SetPosition({ 5.0f,5.0f });
 
+	numberTextureHandle_ = TextureManager::Load("number.png");
+	for (int i = 0; i < 5; i++) {
+		numberSprite_[i]= Sprite::Create(numberTextureHandle_, { 100.0f+size_.x * i,5 });
+		numberSprite_[i]->SetSize(size_);
+	}
+
 	worldTransform_.Initialize();
 	 // カメラの初期化
 	camera_.Initialize();
@@ -86,6 +96,7 @@ void GameScene::Update()
 		}
 	}
 
+	Number();
 
 	// HPに応じてグラフの割合を更新
 	float rate = hp_ / 100.0f;
@@ -140,6 +151,10 @@ void GameScene::Draw()
 	RedGraph_->Draw();
 	GreenGraph_->Draw();
 
+	for (int i = 0; i < 5; i++) {
+		numberSprite_[i]->Draw();
+	}
+
 	// スプライト描画後処理
 	Sprite::PostDraw();
 
@@ -154,3 +169,20 @@ void GameScene::Draw()
 	// 3Dモデル描画後処理
 	Model2::PostDraw();
 }
+
+void GameScene::Number()
+{
+	int32_t number = static_cast<int32_t>(hp_);
+	int32_t digit = 10000;
+
+	for (int i = 0; i < 5; i++) {
+		int32_t nowNumber = number / digit;
+		number %= digit;
+
+		numberSprite_[i]->SetTextureRect({ size_.x * nowNumber, 0.0f }, size_);
+
+		digit /= 10;
+	}
+}
+
+

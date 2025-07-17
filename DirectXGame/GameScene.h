@@ -22,6 +22,8 @@ public:
 	// 描画
 	void Draw();
 
+	void Number();
+
 private:
 	KamataEngine::Model* model_ = nullptr;
 	KamataEngine::WorldTransform worldTransform_;
@@ -51,5 +53,9 @@ private:
 
 	float hp_ = 100.0f;
 	bool isDamageActive_ = false; 
+
+	KamataEngine::Vector2 size_ = { 32.0f,64.0f };
+	KamataEngine::Sprite* numberSprite_[5]{};
+	uint32_t numberTextureHandle_ = 0;
 };
 
