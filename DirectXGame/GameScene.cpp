@@ -43,6 +43,14 @@ void GameScene::Initialize()
 	player_ = new Player();
 	player_->Initialize(playerModel_,playerTextureHandle_,&camera_);
 
+	enemyTextureHandle_ = TextureManager::Load("white1x1.png");
+	enemyModel_ = Model::Create();
+	for (int i = 0; i < 5; i++) {
+		Enemy* enemy = new Enemy();
+		enemy->Initialize(playerModel_, playerTextureHandle_, &camera_);
+		enemies_.push_back(enemy);
+	}
+
 	stage = new Stage;
 	stage->Initialize();
 
@@ -134,6 +142,11 @@ void GameScene::Draw()
 	
 	// プレイヤーの描画
 	player_->Draw(&camera_, playerTextureHandle_);
+
+	for (Enemy* enemy : enemies_) {
+		enemy->Draw(&camera_, enemyTextureHandle_);
+	}
+
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

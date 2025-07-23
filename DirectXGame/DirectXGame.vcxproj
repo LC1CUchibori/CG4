@@ -107,6 +107,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="main.cpp" />
@@ -194,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Effect.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="math.h" />

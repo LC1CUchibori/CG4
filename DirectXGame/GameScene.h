@@ -5,6 +5,7 @@
 #include "Stage.h"
 #include "Player.h"
 #include "Graph.h"
+#include "Enemy.h"
 
 class GameScene
 {
@@ -41,9 +42,12 @@ private:
 
 	Player* player_ = nullptr;
 	KamataEngine::Model* playerModel_ = nullptr;
-
 	// プレイヤーテクスチャハンドル
 	uint32_t playerTextureHandle_ = 0;
+
+	std::vector<Enemy*> enemies_; // 複数の敵
+	KamataEngine::Model* enemyModel_ = nullptr;
+	uint32_t enemyTextureHandle_ = 0;
 
 	Stage* stage = nullptr;
 
