@@ -88,6 +88,10 @@ void GameScene::Update()
 
 	player_->Update();
 
+	for (Enemy* enemy : enemies_) {
+		enemy->Update();
+	}
+
 	Input* input = Input::GetInstance();
 
 	// スペースキーが押されたらHPを減らす
@@ -177,7 +181,7 @@ void GameScene::Draw()
 	Model2::PreDraw(dxCommn->GetCommandList());
 
 	// パーティクルの描画
-	effect_->Draw(&camera_,textureHandle_);
+	//effect_->Draw(&camera_,textureHandle_);
 
 	// 3Dモデル描画後処理
 	Model2::PostDraw();

@@ -16,6 +16,7 @@ public:
 		position_ = pos;
 	}
 
+
 private:
 	// ワールド変換データ
 	KamataEngine::WorldTransform worldTransform_;
@@ -27,5 +28,7 @@ private:
 	KamataEngine::Camera* camera_ = nullptr;
 
 	KamataEngine::Vector3 position_;
+
+	float speed_ = 0.0f;
 };
 
