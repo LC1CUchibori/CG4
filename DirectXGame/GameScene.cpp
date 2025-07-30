@@ -123,6 +123,9 @@ void GameScene::Initialize() {
 	Camera* camera = new Camera();
 	camera->Initialize();
 
+	camera_ = new Camera();
+	camera_->Initialize();
+
 	for (auto& objectData : levelData->objects) {
 		
 		if (objectData.file_name.empty()) {
@@ -172,7 +175,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-	for (size_t i = 0; i < models_.size(); ++i) {
+	for (int i = 0; i < models_.size(); ++i) {
 		models_[i]->Draw(*worldTransforms_[i], *camera_);
 	}
 
