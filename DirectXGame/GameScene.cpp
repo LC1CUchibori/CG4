@@ -120,6 +120,9 @@ void GameScene::Initialize() {
 		}
 	}
 
+	Camera* camera = new Camera();
+	camera->Initialize();
+
 	for (auto& objectData : levelData->objects) {
 		
 		if (objectData.file_name.empty()) {
@@ -128,7 +131,6 @@ void GameScene::Initialize() {
 
 		WorldTransform* worldTransform = new WorldTransform();
 		worldTransform->Initialize();
-		camera_->Initialize();
 		worldTransform->translation_ = objectData.transform.translation;
 		worldTransform->rotation_ = objectData.transform.rotation;
 		worldTransform->scale_ = objectData.transform.scaling;
@@ -171,7 +173,7 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	for (size_t i = 0; i < models_.size(); ++i) {
-		models_[i]->Draw(*worldTransforms_[i], *camera_); 
+		models_[i]->Draw(*worldTransforms_[i], *camera_);
 	}
 
 	// 3Dオブジェクト描画後処理
